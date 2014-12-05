@@ -1272,7 +1272,7 @@ var ajaxChat = {
 				+ '</span>'
 				+ colon
 				//+ this.replaceText(messageText)
-				+ "<img src='http://localhost/pop_c/imageDisplay.php?msg="+messageText+"'/>"	//sl-intern2
+				+ "<img src='http://localhost/pop_c/api/imageDisplay.php?msg="+messageText+"'/>"	//sl-intern2
 				+ '</div>';
 	},
 	
