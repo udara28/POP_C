@@ -24,7 +24,7 @@ $config['dbConnection']['host'] = 'localhost';
 // Database username:
 $config['dbConnection']['user'] = 'root';
 // Database password:
-$config['dbConnection']['pass'] = 'usbw';
+$config['dbConnection']['pass'] = '';
 // Database name:
 $config['dbConnection']['name'] = 'chat';
 // Database type:

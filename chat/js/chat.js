@@ -1271,8 +1271,8 @@ var ajaxChat = {
 				+ userName
 				+ '</span>'
 				+ colon
-				+ this.replaceText(messageText)
-				+ "<img src='http://sl-intern2:8080/imageDisplay.php?msg="+messageText+"'/>"
+				//+ this.replaceText(messageText)
+				+ "<img src='http://localhost/pop_c/imageDisplay.php?msg="+messageText+"'/>"	//sl-intern2
 				+ '</div>';
 	},
 	
