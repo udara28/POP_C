@@ -18,7 +18,7 @@
 		if($i==0){
 			$img=$imgTemp;
 		}else{
-			$img=mergeImage($img,$imgTemp);
+			$img=mergeImagesHorizontally($img,$imgTemp);
 		}
 	}
 
