@@ -9,11 +9,11 @@
 	{
 		//echo $split_str[$i].$i;
 		if(($i%2)==0){
-			$imgTemp=createImage($split_str[$i]);
+			$imgTemp=createImage($split_str[$i],'fonts/kandy.ttf',10);
 		}
 		else
 		{
-			$imgTemp=createImage($split_str[$i],'fonts/monofont.ttf');
+			$imgTemp=createImage($split_str[$i],'fonts/monofont.ttf',12,array(255,0,0));
 		}
 		if($i==0){
 			$img=$imgTemp;

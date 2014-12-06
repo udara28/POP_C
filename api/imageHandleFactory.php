@@ -1,20 +1,17 @@
 <?php
  
-function createImage($word,$font='fonts/impact.ttf'){  
-	$bbox = imagettfbbox(10, 45, $font, $word);
-	$width = $bbox[2]*3;
-	$height = (-1)*$bbox[7]*3;
+function createImage($word,$font='fonts/impact.ttf',$fontSize=20,$fontColor=array(0,0,0),$backgroundColor=array(255,255,255)){  
+	$bbox = imagettfbbox($fontSize, 45, $font, $word);
+	$width = ($bbox[2] - $bbox[0])*1.3;
+	$height = ($bbox[0] - $bbox[6])*1.3;
 	// Create the image
 	$im = imagecreatetruecolor($width, $height);
 	// Create some colors
-	$white = imagecolorallocate($im, 255, 255, 255);
-	$grey = imagecolorallocate($im, 128, 128, 128);
-	$black = imagecolorallocate($im, 0, 0, 0);
-	//imagefilledrectangle($im, 0, 0, 399, 29, $white);
-	$white = imagecolorallocate($im, 255, 255, 255);
-	imagefill($im, 0, 0, $white);
+	$bgColor = imagecolorallocate($im, $backgroundColor[0], $backgroundColor[1], $backgroundColor[2]);
+	$fgColor = imagecolorallocate($im, $fontColor[0], $fontColor[1], $fontColor[2]);
+	imagefill($im, 0, 0, $bgColor);
 	// Add the text
-	imagettftext($im, 20, 0, 0, $height - 2, $black, $font, $word);
+	imagettftext($im, $fontSize, 0, 0, $height - 2, $fgColor, $font, $word);
   
 	// Using imagepng() results in clearer text compared with imagejpeg()
 	return $im;
@@ -30,8 +27,10 @@ function mergeImagesHorizontally($image_x, $image_y) {
    	// Create new image with desired dimensions
   
    	$image = imagecreatetruecolor($width_x+$width_y,max($height_x,$height_y));
-   	$white = imagecolorallocate($image, 255, 255, 255);
-    imagefill($image, 0, 0, $white);
+   	$transparent = imagecolorallocate($image, 253, 249, 121);		//just a random uncommon color
+	imagecolortransparent($image, $transparent);
+    imagefill($image, 0, 0, $transparent);
+	
    
    	imagecopy($image, $image_x, 0, 0, 0, 0, $width_x, $height_x);
 	imagecopy($image, $image_y, $width_x, $height_x-$height_y, 0, 0, $width_y, $height_y);
