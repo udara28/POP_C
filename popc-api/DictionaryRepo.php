@@ -13,6 +13,7 @@ class DictionaryRepo
                     FROM dictionary_entry
                     INNER JOIN dictionary
                     WHERE dictionary_entry.dic_en_word='{$word}'
+                    AND dictionary_entry.dic_id = dictionary.dic_id
                     AND dictionary_entry.dic_id ='{$dicId}'";
 
         $wordResult = $database->select($query);
@@ -20,7 +21,7 @@ class DictionaryRepo
 
         if ($resultCount > 0) {
             while ($entry = mysqli_fetch_assoc($wordResult)) {
-                $logger->debug("Finding key for [{$word}] in dictionary [{$dicId}]");
+                $logger->debug("Finding key for [{$word}] in dictionary [{$dicId}][[ $resultCount [[".$entry['dic_font_name']);
                 return array("font" => $entry['dic_font_name'], "word" => $entry['dic_en_key']);
             }
         }
