@@ -1,5 +1,0 @@
-_assetic:
-    resource: .
-    type: assetic
-_app:
-    resource: 'C:/BitNami/wamp_new/apache2/htdocs/pop_c/popc-web/app/config/routing_dev.yml'
