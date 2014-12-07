@@ -52,7 +52,7 @@ if ($action != null) {
             $response->send($chatResp->resp("S1000", S1000, $img));
         } else if ($action == 'communities') {
             $communityList = $dicRepo->getCommunityList();
-
+            $response->send($chatResp->resp("S1000", S1000, $communityList));
         } else {
             $response->send($chatResp->resp("E0005", E0005, "None"));
         }

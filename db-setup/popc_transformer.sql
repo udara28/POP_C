@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Dec 07, 2014 at 09:25 AM
+-- Generation Time: Dec 07, 2014 at 11:49 AM
 -- Server version: 5.5.28
 -- PHP Version: 5.4.9
 
@@ -32,7 +32,8 @@ CREATE TABLE IF NOT EXISTS `community` (
   `comm_code` varchar(50) NOT NULL,
   `comm_creator` int(50) NOT NULL,
   `comm_updatedTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`comm_id`)
+  PRIMARY KEY (`comm_id`),
+  KEY `comm_creator` (`comm_creator`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
@@ -58,7 +59,8 @@ CREATE TABLE IF NOT EXISTS `dictionary` (
   `dic_creator` int(50) NOT NULL,
   `dic_updatedTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`dic_id`),
-  KEY `comm_id` (`comm_id`)
+  KEY `comm_id` (`comm_id`),
+  KEY `dic_creator` (`dic_creator`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
@@ -85,7 +87,8 @@ CREATE TABLE IF NOT EXISTS `dictionary_entry` (
   `dic_en_creator` int(50) NOT NULL,
   `dic_en_createdTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`dic_en_id`),
-  KEY `dic_id` (`dic_id`)
+  KEY `dic_id` (`dic_id`),
+  KEY `dic_en_creator` (`dic_en_creator`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
@@ -105,12 +108,19 @@ INSERT INTO `dictionary_entry` (`dic_en_id`, `dic_id`, `dic_en_word`, `dic_en_ke
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` int(255) NOT NULL,
+  `user_id` int(255) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(50) NOT NULL,
   `user_pword` varchar(50) NOT NULL,
   `user_email` varchar(50) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `user_name`, `user_pword`, `user_email`) VALUES
+(1, 'testuser', 'test123', 'test@test.com');
 
 -- --------------------------------------------------------
 
@@ -121,7 +131,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 CREATE TABLE IF NOT EXISTS `user_community` (
   `user_comm_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `comm_id` int(11) NOT NULL
+  `comm_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_comm_id`),
+  KEY `user_id` (`user_id`),
+  KEY `comm_id` (`comm_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -134,7 +147,11 @@ CREATE TABLE IF NOT EXISTS `user_dictionary` (
   `user_dic_id` int(255) NOT NULL,
   `user_id` int(255) NOT NULL,
   `comm_id` int(255) NOT NULL,
-  `dic_id` int(255) NOT NULL
+  `dic_id` int(255) NOT NULL,
+  PRIMARY KEY (`user_dic_id`),
+  KEY `user_id` (`user_id`,`comm_id`,`dic_id`),
+  KEY `comm_id` (`comm_id`),
+  KEY `dic_id` (`dic_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -142,16 +159,39 @@ CREATE TABLE IF NOT EXISTS `user_dictionary` (
 --
 
 --
+-- Constraints for table `community`
+--
+ALTER TABLE `community`
+  ADD CONSTRAINT `community_ibfk_1` FOREIGN KEY (`comm_creator`) REFERENCES `user` (`user_id`);
+
+--
 -- Constraints for table `dictionary`
 --
 ALTER TABLE `dictionary`
+  ADD CONSTRAINT `dictionary_ibfk_2` FOREIGN KEY (`dic_creator`) REFERENCES `user` (`user_id`),
   ADD CONSTRAINT `dictionary_ibfk_1` FOREIGN KEY (`comm_id`) REFERENCES `community` (`comm_id`);
 
 --
 -- Constraints for table `dictionary_entry`
 --
 ALTER TABLE `dictionary_entry`
+  ADD CONSTRAINT `dictionary_entry_ibfk_2` FOREIGN KEY (`dic_en_creator`) REFERENCES `user` (`user_id`),
   ADD CONSTRAINT `dictionary_entry_ibfk_1` FOREIGN KEY (`dic_id`) REFERENCES `dictionary` (`dic_id`);
+
+--
+-- Constraints for table `user_community`
+--
+ALTER TABLE `user_community`
+  ADD CONSTRAINT `user_community_ibfk_2` FOREIGN KEY (`comm_id`) REFERENCES `community` (`comm_id`),
+  ADD CONSTRAINT `user_community_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Constraints for table `user_dictionary`
+--
+ALTER TABLE `user_dictionary`
+  ADD CONSTRAINT `user_dictionary_ibfk_3` FOREIGN KEY (`dic_id`) REFERENCES `dictionary` (`dic_id`),
+  ADD CONSTRAINT `user_dictionary_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+  ADD CONSTRAINT `user_dictionary_ibfk_2` FOREIGN KEY (`comm_id`) REFERENCES `community` (`comm_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
