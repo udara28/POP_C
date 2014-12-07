@@ -1312,7 +1312,7 @@ var ajaxChat = {
             + '</span>'
             + colon
             //+ this.replaceText(messageText)
-            + "<img src='http://localhost/pop_c/api/imageDisplay.php?msg="+messageText+"' id='chatMsgId"+this.getMessageDocumentID(messageID)+"'/>"	//sl-intern2
+            + "<img src='http://api.popc.org/pop_c/chat/img/loading.gif' id='chatMsgId"+this.getMessageDocumentID(messageID)+"'/>"	//sl-intern2
             + '</div>';
     },
 
