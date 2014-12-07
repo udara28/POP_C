@@ -1,3 +1,8 @@
+/**
+ * This is send a translate request to Pop-c API
+ * @param params
+ * @param url
+ */
 function translate(params, url) {
     $.ajax({
         type: "POST",
@@ -12,6 +17,11 @@ function translate(params, url) {
     });
 }
 
+/**
+ * This is to send a request to get communities from Pop-c API
+ * @param params
+ * @param url
+ */
 function getCommunities(params, url) {
     $.ajax({
         type: "POST",
