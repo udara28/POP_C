@@ -24,18 +24,18 @@ $action = $_GET['do'];
 if ($action != null) {
 
     $apiKey = $_POST['api_key'];
-    $correlationId = $_POST['correlation_id'];
-    $message = $_POST['message'];
-    $sender_communityId = $_POST['sender_communityId'];
-    $sender_dictionaryId = $_POST['sender_dictionaryId'];
-    $receiver_communityId = $_POST['receiver_communityId'];
-    $receiver_dictionaryId = $_POST['receiver_dictionaryId'];
-    $time = $_POST['time'];
-
     $validate = $api->validateKey($apiKey);
 
     if ($validate == "S1000") {
         if ($action == 'chat') {
+            $correlationId = $_POST['correlation_id'];
+            $message = $_POST['message'];
+            $sender_communityId = $_POST['sender_communityId'];
+            $sender_dictionaryId = $_POST['sender_dictionaryId'];
+            $receiver_communityId = $_POST['receiver_communityId'];
+            $receiver_dictionaryId = $_POST['receiver_dictionaryId'];
+            $time = $_POST['time'];
+
             $chat->req($apiKey,
                 $correlationId,
                 $message,
@@ -53,6 +53,10 @@ if ($action != null) {
         } else if ($action == 'communities') {
             $communityList = $dicRepo->getCommunityList();
             $response->send($chatResp->resp("S1000", S1000, $communityList));
+        } else if($action == 'dictionaries') {
+            $communityId = $_POST['community'];
+            $dictionaryList = $dicRepo->getDictionariesByCommunity($communityId);
+            $response->send($chatResp->resp("S1000", S1000, $dictionaryList));
         } else {
             $response->send($chatResp->resp("E0005", E0005, "None"));
         }

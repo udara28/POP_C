@@ -29,12 +29,32 @@ function getCommunities(params, url) {
         dataType: "json",
         data: jQuery.parseJSON(params),
         success: function (data) {
-            console.log(data['result']);
             var dropDown = $("#comm");
             for (var x in data['result']) {
                 var option = "<option value='"+data['result'][x]['id']+"'>"+data['result'][x]['name']+"</option>";
                 dropDown.append(option);
-                console.log("X="+ data['result'][x]['name']);
+            }
+        }
+    });
+}
+
+/**
+ * This is find dictionaries by community Id
+ * @param params
+ * @param url
+ */
+function getDictionaries(params, url) {
+    $.ajax({
+        type: "POST",
+        url: "http://localhost/pop_c/popc-api/index.php?do=" + url,
+        dataType: "json",
+        data: jQuery.parseJSON(params),
+        success: function (data) {
+            var dropDown = $("#dict");
+            dropDown.html("");
+            for (var x in data['result']) {
+                var option = "<option value='"+data['result'][x]['id']+"'>"+data['result'][x]['name']+"</option>";
+                dropDown.append(option);
             }
         }
     });

@@ -23,6 +23,14 @@
 
     //Get communities example
     getCommunities('{"api_key":"12yui3244"}', 'communities');
+
+    //Getting dictionaries by community Id, On change event of community drop down
+    $(function(){
+        $("#comm").change(function(e){
+            var param = '{"api_key":"12yui3244", "community":"'+this.value+'"}';
+            getDictionaries(param, "dictionaries");
+        });
+    })
 </script>
 
 
@@ -32,7 +40,14 @@
 <hr>
 
 <h3>Community list</h3>
-<select id="comm"></select>
+<select id="comm">
+    <option selected>Select community</option>
+</select>
+
+<hr>
+
+<h3>Dictionary list</h3>
+<select id="dict"></select>
 
 </body>
 </html>

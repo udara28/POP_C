@@ -87,7 +87,23 @@ class DictionaryRepo
             array_push($communities, array("id" => $entry['comm_id'], "name" => $entry['comm_name'], "code" => $entry['comm_code']));
         }
 
-        $logger->debug("Sending community list ".json_encode($logger));
+        $logger->debug("Sending community list ".json_encode($communities));
         return $communities;
+    }
+
+    function getDictionariesByCommunity($commId){
+
+        $logger = new Logger();
+        $database = new DbConnector();
+        $query = "SELECT dic_id, dic_name FROM dictionary WHERE comm_id=$commId";
+        $dictionaryResult = $database->select($query);
+        $dictionaries = array();
+
+        while($entry = mysqli_fetch_assoc($dictionaryResult)){
+            array_push($dictionaries, array("id" => $entry['dic_id'], "name" => $entry['dic_name']));
+        }
+
+        $logger->debug("Sending dictionary list ".json_encode($dictionaries));
+        return $dictionaries;
     }
 }
