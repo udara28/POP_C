@@ -18,6 +18,7 @@ $chatResp = new ChatResponseJson();
 $image = new ImageMaker();
 $response = new Response();
 $dicRepo = new DictionaryRepo();
+$logger = new Logger();
 
 $action = $_GET['do'];
 
@@ -35,6 +36,7 @@ if ($action != null) {
             $receiver_communityId = $_POST['receiver_communityId'];
             $receiver_dictionaryId = $_POST['receiver_dictionaryId'];
             $time = $_POST['time'];
+            $logger->debug("Received chat request [".$correlationId."]");
 
             $chat->req($apiKey,
                 $correlationId,
@@ -44,11 +46,13 @@ if ($action != null) {
                 $receiver_communityId,
                 $receiver_dictionaryId,
                 $time);
-            $img = $image->make($chat->getReceiverCommunityId(),
+            $img = $image->make($chat->getCorrelationId(),
+                $chat->getReceiverCommunityId(),
                 $chat->getReceiverDictionaryId(),
                 $chat->getSenderCommunityId(),
                 $chat->getSenderDictionaryId(),
                 $chat->getMessage());
+            $logger->debug("Sending response to chat app [".$correlationId."]");
             $response->send($chatResp->resp("S1000", S1000, $img));
         } else if ($action == 'communities') {
             $communityList = $dicRepo->getCommunityList();
