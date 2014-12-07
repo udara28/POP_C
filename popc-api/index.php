@@ -26,7 +26,11 @@ if ($action != null) {
     if ($validate == "S1000") {
         if ($action == 'chat') {
             $chat->req($headers);
-            $img = $image->make($chat->getReceiverDictionaryId(), $chat->getMessage());
+            $img = $image->make($chat->getReceiverCommunityId(),
+                $chat->getReceiverDictionaryId(),
+                $chat->getSenderCommunityId(),
+                $chat->getSenderDictionaryId(),
+                $chat->getMessage());
             $response->send($chatResp->resp("S1000", S1000, $img));
         }
     } else {

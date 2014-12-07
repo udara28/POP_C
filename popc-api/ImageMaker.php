@@ -7,7 +7,12 @@ require_once('DictionaryRepo.php');
 class ImageMaker
 {
 
-    function make($dicId, $message)
+    function make(
+        $receiver_comm_id,
+        $receiver_dic_id,
+        $sender_comm_id,
+        $sender_dic_id,
+        $message)
     {
         $dicRepo = new DictionaryRepo();
         $logger = new Logger();
@@ -16,21 +21,42 @@ class ImageMaker
         $size = sizeof($split_str);
 
         for ($i = 0; $i < $size; $i++) {
-            $findWord = $dicRepo->findWordByDicIdAndWord($dicId, $split_str[$i]);
+            $currentWord = $split_str[$i];
+            if ($receiver_comm_id == $sender_comm_id) {
+                $findWord = $dicRepo->findWordByDicIdAndWord($receiver_dic_id, $currentWord);
 
-            if ($findWord['font'] != "None") {
-                $imgTemp = createImage($findWord['word'] . " ", 'fonts/' . $findWord['font'], $findWord['font-size']);
+                if ($findWord['font'] != "None") {
+                    $imgTemp = createImage($findWord['word'] . " ", 'fonts/' . $findWord['font'], $findWord['font-size']);
+                } else {
+                    $imgTemp = createImage($findWord['word'] . " ", 'fonts/monofont.ttf', 15);
+                }
+
+                if ($i == 0) {
+                    $img = $imgTemp;
+                } else {
+                    $img = mergeImagesHorizontally($img, $imgTemp);
+                }
             } else {
-                $imgTemp = createImage($findWord['word'] . " ", 'fonts/monofont.ttf', 15);
+                $logger->debug("Sender[$sender_comm_id] and Receiver[$receiver_comm_id] are in two different communities");
+                $engWord = $dicRepo->findEnglishWordByDicIdAndWord($receiver_dic_id, $currentWord);
+                $logger->debug("English word of [$currentWord] is $engWord");
+                $findWordInSenderDic = $dicRepo->findWordByEnglishWordAndDicId($sender_dic_id, $engWord);
+
+                if ($findWordInSenderDic['font'] != "None") {
+                    $imgTemp = createImage($findWordInSenderDic['word'] . " ",
+                        'fonts/' . $findWordInSenderDic['font'],
+                        $findWordInSenderDic['font-size']);
+                } else {
+                    $imgTemp = createImage($findWordInSenderDic['word'] . " ", 'fonts/monofont.ttf', 15);
+                }
+
+                if ($i == 0) {
+                    $img = $imgTemp;
+                } else {
+                    $img = mergeImagesHorizontally($img, $imgTemp);
+                }
+
             }
-
-            if ($i == 0) {
-                $img = $imgTemp;
-            } else {
-                $img = mergeImagesHorizontally($img, $imgTemp);
-            }
-
-
         }
 
         ob_start();

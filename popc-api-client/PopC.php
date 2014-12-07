@@ -4,8 +4,7 @@ class Config
 {
     private $apiKey = "12yui3244";
     private $apiHost = "http://localhost/pop_c/popc-api/index.php?do=";
-    //private $logPath = "C:\\BitNami\\wamp_new\\apache2\\htdocs\\popsi-test";
-         private $logPath = "C:\\BitNami\\wampstack-5.4.9-0\\apache2\\htdocs\\POP_C\\popc-api-client";
+    private $logPath = "C:\\popc_logs";
     /**
      * @return string
      */
