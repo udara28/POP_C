@@ -2,4 +2,4 @@ _assetic:
     resource: .
     type: assetic
 _app:
-    resource: 'D:/xampp/htdocs/LoginSample/app/config/routing_dev.yml'
+    resource: 'C:/BitNami/wamp_new/apache2/htdocs/pop_c/popc-web/app/config/routing_dev.yml'

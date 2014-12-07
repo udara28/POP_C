@@ -1,3 +1,7 @@
+dictionary_dictionary:
+    resource: "@DictionaryDictionaryBundle/Resources/config/routing.yml"
+    prefix:   /
+
 login_login:
     resource: "@LoginLoginBundle/Resources/config/routing.yml"
     prefix:   /
