@@ -8,10 +8,10 @@ $resp = $pop_c->translate(
     array(
         "correlation_id" => "123",
         "message" => "mala",
-        "sender_communityId" => "3",
-        "sender_dictionaryId" => "2",
-        "receiver_communityId" => "1",
-        "receiver_dictionaryId" => "1",
+        "sender_communityId" => "1",
+        "sender_dictionaryId" => "1",
+        "receiver_communityId" => "3",
+        "receiver_dictionaryId" => "2",
         "time" => "12222222"),
     "chat");
 ?>

@@ -50,10 +50,10 @@ class PopC
             'api_key: ' . $config->getApiKey(),
             'correlation_id: ' . $params['correlation_id'],
             'message: ' . $params['message'],
-            'sender_communityId: ' . $params['sender_communityId'],
-            'sender_dictionaryId: ' . $params['sender_dictionaryId'],
-            'receiver_communityId: ' . $params['receiver_communityId'],
-            'receiver_dictionaryId: ' . $params['receiver_dictionaryId'],
+            'receiver_communityId: ' . $params['sender_communityId'],
+            'receiver_dictionaryId: ' . $params['sender_dictionaryId'],
+            'sender_communityId: ' . $params['receiver_communityId'],
+            'sender_dictionaryId: ' . $params['receiver_dictionaryId'],
             'time: ' . $params['time']);
         $json = $req->post($header, $url);
         return json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $json), true);
