@@ -8,6 +8,7 @@ class ImageMaker
 {
 
     function make(
+        $correlationId,
         $receiver_comm_id,
         $receiver_dic_id,
         $sender_comm_id,
@@ -16,6 +17,7 @@ class ImageMaker
     {
         $dicRepo = new DictionaryRepo();
         $logger = new Logger();
+        $logger->debug("Make request received [".$correlationId."]");
 
         $split_str = explode(" ", $message);
         $size = sizeof($split_str);
@@ -36,6 +38,7 @@ class ImageMaker
                 } else {
                     $img = mergeImagesHorizontally($img, $imgTemp);
                 }
+                $logger->debug("Made chat image [".$correlationId."]. Sender and receiver are in same community");
             } else {
                 $logger->debug("Sender[$sender_comm_id] and Receiver[$receiver_comm_id] are in two different communities");
                 $engWord = $dicRepo->findEnglishWordByDicIdAndWord($receiver_dic_id, $currentWord);
@@ -55,6 +58,7 @@ class ImageMaker
                 } else {
                     $img = mergeImagesHorizontally($img, $imgTemp);
                 }
+                $logger->debug("Made chat image [".$correlationId."]. Sender and receiver are in two different communities");
 
             }
         }
@@ -64,6 +68,7 @@ class ImageMaker
         $image_data = ob_get_contents();
         ob_end_clean();
         $image_data_base64 = base64_encode($image_data);
+        $logger->debug("Returning base64 at [".round(microtime(true) * 1000)."][".$correlationId."]");
         return $image_data_base64;
     }
 
