@@ -1,1 +1,50 @@
-Hello {{ name }}!
+{% extends "LoginLoginBundle:Default:index.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{asset('bundles/loginlogin/css/parsley/parsley.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block container %}
+
+    {#<form class="form-signin" role="form" method="POST" action="{{path('login_login_signup')}}" data-parsley-validate>
+        <h2 class="form-signin-heading">Sign up for POPC</h2>
+        <label for="inputUsername" class="sr-only">User name</label>
+        <input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required data-parsley-trigger="change" autofocus>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required data-parsley-trigger="change">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required data-required="true" data-trigger="change">
+        <label for="inputRePassword" class="sr-only">Re-type Password</label>
+        <input name="re-password" type="password" id="inputPassword" class="form-control" placeholder="Re-type Password" required data-required="true" data-trigger="change">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    </form>#}
+
+    <form class="form-signin" role="form">
+        <h2 class="form-signin-heading">Dictionary Entries</h2>
+
+        <label for="dictionaryId" class="">Dictionary</label>
+        {#<input type="text" id="dictionaryId" name="dictionaryId" class="form-control" placeholder="Dictionary Id" required autofocus>#}
+        <select name="dictionaryId" class="form-control" id="dictionaryId">
+            <option>Select a dictionary</option>
+            <option>Sinhala01</option>
+            <option>Tamil01</option>
+        </select>
+
+        <label for="word" class="sr-only">Word</label>
+        <input type="text" id="word" name="word" class="form-control" placeholder="Word, ex: mala" required autofocus>
+
+        <label for="key" class="sr-only">Key</label>
+        <input type="text" id="key" name="key" class="form-control" placeholder="Key, ex: ml" required autofocus>
+
+        {#<label for="nativeWord" class="sr-only">Native Word</label>
+        <input type="text" id="nativeWord" name="nativeWord" class="form-control" placeholder="Native Word" required autofocus>#}
+
+        <label for="englishWord" class="sr-only">English Word</label>
+        <input type="text" id="englishWord" name="englishWord" class="form-control" placeholder="English Word, ex: flower" required autofocus>
+
+        <br>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Insert</button>
+    </form>
+
+{% endblock %}
