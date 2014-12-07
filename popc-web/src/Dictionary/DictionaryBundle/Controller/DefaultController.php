@@ -13,7 +13,7 @@ class DefaultController extends Controller
         return $this->render('DictionaryDictionaryBundle:Default:index.html.twig', array('name' => $name));
     }
     
-    public function insertDictionaryAction(){
+    public function dictionaryManagerAction(){
         $session = $this->getRequest()->getSession();
         return $this->render('DictionaryDictionaryBundle:Default:addDictionary.html.twig',array('name' => $session->get('name')));
     }

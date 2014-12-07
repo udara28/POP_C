@@ -39,25 +39,23 @@
 
 {% block container %}
     
-    {% block side_navbar %}
-        
-        <div class="container-fluid">
+    {% block propic %}
+     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+          <div class="col-sm-3 col-md-2 sidebar">
             
-            <div class="nav nav-sidebar row">
-  <div>
-    <div class="thumbnail">
-      <img data-src="holder.js/30x30" alt="...">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
+       <div class="nav nav-sidebar row">
+        <div>
+            <div class="thumbnail">
+                <img data-src="holder.js/180x200" alt="...">
+      
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-            
+    
+      {% endblock %}  
+       
+     {% block side_navbar %}       
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
             <ul>
@@ -66,11 +64,11 @@
                 <li>Export</li>
             </ul>
           
-            <li><a href="">Community Insert</a></li>
+            <li><a href="{{path('community_community_index')}}">Community Manager</a></li>
             <ul>
-                <li><a href="">Community Update</a></li>
-                <li><a href="">Community Delete</a></li>
-                <li><a href="">Communit Search</a></li>
+                <li>Community Update</li>
+                <li>Community Delete</li>
+                <li>Communit Search</li>
             </ul>
             
             <li><a href="{{path('dictionary_dictionary_index')}}">Dictionary Manager</a></li>

@@ -1,0 +1,35 @@
+{% extends "LoginLoginBundle:Default:welcome.html.twig" %}
+
+{% block side_navbar %}
+        
+        <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="{{path('login_login_homepage')}}">Overview</a></li>
+            <ul>
+                <li>Reports</li>
+                <li>Analytics</li>
+                <li>Export</li>
+            </ul>
+          
+            <li class="active" ><a href="{{path('community_community_index')}}">Community Insert<span class="sr-only">(current)</span></a></li>
+            <ul>
+                <li>Community Update</li>
+                <li>Community Delete</li>
+                <li>Communit Search</li>
+            </ul>
+            
+            <ul>
+                <li>Dictionary Update</li>
+                <li>Dictionary Delete</li>
+                <li>Dictionary Search</li>
+            </ul>
+          </ul>
+        </div>
+            
+{% endblock %}
+
+{% block canvas %}
+    
+{% endblock %}
