@@ -26,11 +26,11 @@ function translate(params, url, chatImgId) {
 function getCommunities(params, url) {
     $.ajax({
         type: "POST",
-        url: "http://localhost/pop_c/popc-api/index.php?do=" + url,
+        url: "http://api.popc.org/pop_c/popc-api/index.php?do=" + url,
         dataType: "json",
         data: jQuery.parseJSON(params),
         success: function (data) {
-            var dropDown = $("#comm");
+            var dropDown = $("#comList");
             for (var x in data['result']) {
                 var option = "<option value='"+data['result'][x]['id']+"'>"+data['result'][x]['name']+"</option>";
                 dropDown.append(option);
@@ -47,11 +47,11 @@ function getCommunities(params, url) {
 function getDictionaries(params, url) {
     $.ajax({
         type: "POST",
-        url: "http://localhost/pop_c/popc-api/index.php?do=" + url,
+        url: "http://api.popc.org/pop_c/popc-api/index.php?do=" + url,
         dataType: "json",
         data: jQuery.parseJSON(params),
         success: function (data) {
-            var dropDown = $("#dict");
+            var dropDown = $("#dictList");
             dropDown.html("");
             for (var x in data['result']) {
                 var option = "<option value='"+data['result'][x]['id']+"'>"+data['result'][x]['name']+"</option>";

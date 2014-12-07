@@ -121,15 +121,9 @@
     <label for="comList">Community</label>
     <select id="comList">
         <option>Select</option>
-        <option value="1">1</option>
-        <option value="3">3</option>
     </select>
     <label for="dictList">Dictionary</label>
-    <select id="dictList">
-        <option>Select</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-    </select>
+    <select id="dictList"></select>
     <input type="text" id="uName" value=""/>
 </div>
 <div id="statusIconContainer" class="statusContainerOn"></div>
@@ -397,6 +391,20 @@
 <div id="copyright"><a href="https://blueimp.net/ajax/">AJAX Chat</a> &copy; <a href="https://blueimp.net">blueimp.net</a></div>
 </div>
 <div id="flashInterfaceContainer"></div>
+
+<script type="text/javascript">
+    //Get communities example
+    getCommunities('{"api_key":"12yui3244"}', 'communities');
+
+    //Getting dictionaries by community Id, On change event of community drop down
+    $(function(){
+        $("#comList").change(function(e){
+            var param = '{"api_key":"12yui3244", "community":"'+this.value+'"}';
+            getDictionaries(param, "dictionaries");
+        });
+    });
+</script>
+
 </body>
 
 </html>
