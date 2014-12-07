@@ -10,6 +10,7 @@
 
 <body>
 <script type="text/javascript">
+    //Chat translate example
     var req = translate(
             '{"api_key":"12yui3244",' +
                     '"correlation_id":"123", ' +
@@ -19,10 +20,19 @@
                     '"receiver_communityId" :"3", ' +
                     '"receiver_dictionaryId": "2", ' +
                     '"time" : "12222222"}', "chat");
+
+    //Get communities example
+    getCommunities('{"api_key":"12yui3244"}', 'communities');
 </script>
 
 
-<div id="imageDiv">123</div>
+<h3>Translated word</h3>
+<div id="imageDiv">Translated word loading...</div>
+
+<hr>
+
+<h3>Community list</h3>
+<select id="comm"></select>
 
 </body>
 </html>
