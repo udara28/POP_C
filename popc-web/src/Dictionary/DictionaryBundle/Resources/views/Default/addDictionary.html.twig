@@ -1,0 +1,36 @@
+{% extends "LoginLoginBundle:Default:welcome.html.twig" %}
+
+{% block side_navbar %}
+        
+        <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="{{path('login_login_homepage')}}">Overview</a></li>
+            <ul>
+                <li>Reports</li>
+                <li>Analytics</li>
+                <li>Export</li>
+            </ul>
+          
+            <li><a href="">Community Insert</a></li>
+            <ul>
+                <li><a href="">Community Update</a></li>
+                <li><a href="">Community Delete</a></li>
+                <li><a href="">Communit Search</a></li>
+            </ul>
+            
+            <li class="active"><a href="{{path('dictionary_dictionary_index')}}">Dictionary Manager<span class="sr-only">(current)</span></a></li>
+            <ul>
+                <li>Dictionary Update</li>
+                <li>Dictionary Delete</li>
+                <li>Dictionary Search</li>
+            </ul>
+          </ul>
+        </div>
+            
+{% endblock %}
+
+{% block canvas %}
+    
+{% endblock %}

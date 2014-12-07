@@ -2,17 +2,19 @@
 
 namespace Dictionary\DictionaryBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Login\LoginBundle\Entity\User;
 
 class DefaultController extends Controller
 {
     public function indexAction($name)
     {
-        /*if ($request->getMethod() == "POST") {
-//            $username = $re
-        }*/
         return $this->render('DictionaryDictionaryBundle:Default:index.html.twig', array('name' => $name));
+    }
+    
+    public function insertDictionaryAction(){
+        $session = $this->getRequest()->getSession();
+        return $this->render('DictionaryDictionaryBundle:Default:addDictionary.html.twig',array('name' => $session->get('name')));
     }
 }
