@@ -30,8 +30,8 @@ class DefaultController extends Controller
                     $login->setPassword($password);
                     $session->set('login', $login);
                 }
-                //return $remember;
-                return $this->render('LoginLoginBundle:Default:welcome.html.twig', array('name' => $user->getUserName()));
+                $session->set('name',$username);
+                return $this->render('LoginLoginBundle:Default:welcome.html.twig',array('name' => $username));
             }
             return $this->render('LoginLoginBundle:Default:login.html.twig');
         }else{
@@ -45,7 +45,8 @@ class DefaultController extends Controller
                 $user = $repositroy->findOneBy(array('userName' => $username, 'userPword' => $password));
                 
                 if($user){
-                    return $this->render('LoginLoginBundle:Default:welcome.html.twig', array('name' => $user->getUserName()));
+                    $session->set('name',$username);
+                    return $this->render('LoginLoginBundle:Default:welcome.html.twig', array('name' => $username));
                 }
             }
             return $this->render('LoginLoginBundle:Default:login.html.twig');
