@@ -19,7 +19,7 @@ class ImageMaker
             $findWord = $dicRepo->findWordByDicIdAndWord($dicId, $split_str[$i]);
 
             if ($findWord['font'] != "None") {
-                $imgTemp = createImage($findWord['word'] . " ", 'fonts/' . $findWord['font'], 10);
+                $imgTemp = createImage($findWord['word'] . " ", 'fonts/' . $findWord['font'], $findWord['font-size']);
             } else {
                 $imgTemp = createImage($findWord['word'] . " ", 'fonts/monofont.ttf', 15);
             }
