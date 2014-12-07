@@ -1,3 +1,6 @@
 .idea
+.gitkeep
 *.iml
 *.log*
+*\app\cache\dev\*
+*/app/cache/dev/*
