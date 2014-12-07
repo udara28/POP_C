@@ -13,18 +13,32 @@ class ChatReceiveJson
     private $time;
 
     /**
-     * @param $header
+     * @param $apiKey
+     * @param $correlationId
+     * @param $message
+     * @param $sender_communityId
+     * @param $sender_dictionaryId
+     * @param $receiver_communityId
+     * @param $receiver_dictionaryId
+     * @param $time
      */
-    function req($header)
+    function req($apiKey,
+                 $correlationId,
+                 $message,
+                 $sender_communityId,
+                 $sender_dictionaryId,
+                 $receiver_communityId,
+                 $receiver_dictionaryId,
+                 $time)
     {
-        $this->apiKey = $header['api_key'];
-        $this->correlationId = $header['correlation_id'];
-        $this->message = $header['message'];
-        $this->sender_communityId = $header['sender_communityId'];
-        $this->sender_dictionaryId = $header['sender_dictionaryId'];
-        $this->receiver_communityId = $header['receiver_communityId'];
-        $this->receiver_dictionaryId = $header['receiver_dictionaryId'];
-        $this->time = $header['time'];
+        $this->apiKey = $apiKey;
+        $this->correlationId = $correlationId;
+        $this->message = $message;
+        $this->sender_communityId = $sender_communityId;
+        $this->sender_dictionaryId = $sender_dictionaryId;
+        $this->receiver_communityId = $receiver_communityId;
+        $this->receiver_dictionaryId = $receiver_dictionaryId;
+        $this->time = $time;
     }
 
     /**

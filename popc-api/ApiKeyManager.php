@@ -7,17 +7,18 @@ class ApiKeyManager
 {
 
     /**
-     * @param $req
+     * @param $apiKey
      * @return string
      */
-    function validateKey($req)
+    function validateKey($apiKey)
     {
         $config = new Config();
         $logger = new Logger();
-        if (in_array($req['api_key'], $config->getApiKeys())) {
+
+        if (in_array($apiKey, $config->getApiKeys())) {
             return "S1000";
         } else {
-            $logger->debug("Invalid API Key [" . $req['api_key'] . "]");
+            $logger->debug("Invalid API Key [" . $apiKey . "]");
             return "E0007";
         }
     }

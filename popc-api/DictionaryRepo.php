@@ -74,4 +74,20 @@ class DictionaryRepo
         }
         return array("font" => "None", "word" => $enWord);
     }
+
+    function getCommunityList(){
+
+        $logger = new Logger();
+        $database = new DbConnector();
+        $query = "SELECT comm_id, comm_name, comm_code FROM community";
+        $communityResult = $database->select($query);
+        $communities = array();
+
+        while($entry = mysqli_fetch_assoc($communityResult)){
+            array_push($communities, array("id" => $entry['comm_id'], "name" => $entry['comm_name'], "code" => $entry['comm_code']));
+        }
+
+        $logger->debug("Sending community list ".json_encode($logger));
+        return $communities;
+    }
 }
