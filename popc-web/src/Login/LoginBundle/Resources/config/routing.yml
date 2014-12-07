@@ -5,3 +5,7 @@ login_login_homepage:
 login_login_signup:
     pattern:  /signup
     defaults: { _controller: LoginLoginBundle:Default:signup }
+    
+login_login_logout:
+    pattern:  /logout
+    defaults: { _controller: LoginLoginBundle:Default:logout }
