@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Dec 07, 2014 at 06:26 AM
+-- Generation Time: Dec 07, 2014 at 09:25 AM
 -- Server version: 5.5.28
 -- PHP Version: 5.4.9
 
@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `dictionary` (
   `dic_name` varchar(50) NOT NULL,
   `comm_id` int(255) NOT NULL,
   `dic_font_name` varchar(50) NOT NULL,
+  `dic_font_size` int(50) NOT NULL,
   `dic_creator` int(50) NOT NULL,
   `dic_updatedTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`dic_id`),
@@ -64,9 +65,9 @@ CREATE TABLE IF NOT EXISTS `dictionary` (
 -- Dumping data for table `dictionary`
 --
 
-INSERT INTO `dictionary` (`dic_id`, `dic_name`, `comm_id`, `dic_font_name`, `dic_creator`, `dic_updatedTime`) VALUES
-(1, 'Sinhala01', 1, 'kandy.ttf', 1, '2014-12-06 15:49:07'),
-(2, 'Tamil01', 3, 'aapc.ttf', 1, '2014-12-07 00:55:45');
+INSERT INTO `dictionary` (`dic_id`, `dic_name`, `comm_id`, `dic_font_name`, `dic_font_size`, `dic_creator`, `dic_updatedTime`) VALUES
+(1, 'Sinhala01', 1, 'kandy.ttf', 12, 1, '2014-12-07 02:05:34'),
+(2, 'Tamil01', 3, 'aapc.ttf', 14, 1, '2014-12-07 02:05:39');
 
 -- --------------------------------------------------------
 
@@ -95,7 +96,7 @@ INSERT INTO `dictionary_entry` (`dic_en_id`, `dic_id`, `dic_en_word`, `dic_en_ke
 (1, 1, 'amara', 'amr', '', 'amara', 1, '2014-12-06 15:52:58'),
 (2, 1, 'kata', 'kt', '', 'mouth', 1, '2014-12-06 17:29:45'),
 (3, 1, 'mala', 'ml', '', 'flower', 1, '2014-12-06 17:30:24'),
-(4, 2, 'puri', 'pr', '', 'flower', 1, '2014-12-06 18:10:02');
+(4, 2, 'puri', 'Gu', '', 'flower', 1, '2014-12-07 02:03:14');
 
 -- --------------------------------------------------------
 
