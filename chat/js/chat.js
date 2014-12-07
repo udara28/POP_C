@@ -1260,17 +1260,12 @@ var ajaxChat = {
         }
         var dateTime = this.settings['dateFormat'] ? '<span class="dateTime">'
             + this.formatDate(this.settings['dateFormat'], dateObject) + '</span> ' : '';
-        console.log("============================================"+userID+"========"+userName);
 
         var userComList = $("#comList").val();
         var userDictList = $("#dictList").val();
         var currentUser = $("#uName").val();
 
-        console.log("==================================CL=========="+userComList+"========"+userName);
-        console.log("==================================DL=========="+userDictList+"========"+userName);
-
         if(userID == currentUser){
-            console.loginChannelID("===============SENDER");
             translate(
                 '{"api_key":"12yui3244",' +
                     '"correlation_id":"123", ' +
@@ -1282,7 +1277,6 @@ var ajaxChat = {
                     '"time" : "12222222"}', "chat", "chatMsgId"+this.getMessageDocumentID(messageID));
 
         } else {
-            console.loginChannelID("===============RECEIVER");
             translate(
                 '{"api_key":"12yui3244",' +
                     '"correlation_id":"123", ' +
