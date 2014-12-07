@@ -2,5 +2,5 @@
 .gitkeep
 *.iml
 *.log*
-*\app\cache\dev\*
-*/app/cache/dev/*
+*\app\cache\*
+*/app/cache/*
