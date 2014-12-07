@@ -3,7 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="[LANG_CODE/]" lang="[LANG_CODE/]" dir="[BASE_DIRECTION/]">
 
 <head>
+	
 	<meta http-equiv="Content-Type" content="[CONTENT_TYPE/]" />
+	<!-- added lines-->
+	<script type="text/javascript" src="samples/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="samples/js/popc.js"></script>
+	
 	<title>[LANG]title[/LANG]</title>
 	<style type="text/css">
 		body {
@@ -104,6 +109,29 @@
 </head>
 
 <body>
+<script type="text/javascript">
+    //Chat translate example
+    var req = translate(
+            '{"api_key":"12yui3244",' +
+                    '"correlation_id":"123", ' +
+                    '"message": "puri", ' +
+                    '"sender_communityId" :"1", ' +
+                    '"sender_dictionaryId" : "1", ' +
+                    '"receiver_communityId" :"3", ' +
+                    '"receiver_dictionaryId": "2", ' +
+                    '"time" : "12222222"}', "chat");
+
+    //Get communities example
+    getCommunities('{"api_key":"12yui3244"}', 'communities');
+
+    //Getting dictionaries by community Id, On change event of community drop down
+    $(function(){
+        $("#comm").change(function(e){
+            var param = '{"api_key":"12yui3244", "community":"'+this.value+'"}';
+            getDictionaries(param, "dictionaries");
+        });
+    })
+</script>
 	<div id="content">
 		<div id="headlineContainer">
 			<h1>[LANG]title[/LANG]</h1>
@@ -116,6 +144,11 @@
 			<select id="styleSelection" onchange="ajaxChat.setActiveStyleSheet(ajaxChat.getSelectedStyle());">[STYLE_OPTIONS/]</select>
 			<label for="languageSelection">[LANG]language[/LANG]:</label>
 			<select id="languageSelection" onchange="ajaxChat.switchLanguage(this.value);">[LANGUAGE_OPTIONS/]</select>
+			<label for="communitySelection">[LANG]community[/LANG]:</label>
+			<select id="comm" onchange="ajaxChat.switchCommunity(this.value);"><option selected>Select community</option></select>
+			<label for="dictionarySelection">[LANG]dictionary[/LANG]:</label>
+			<select id="dict" onchange="ajaxChat.switchDictionary(this.value);">Select dictionary</select>
+			<!-- addded  2 combos-->
   		</div>
 		<div id="statusIconContainer" class="statusContainerOn"></div>
 		<!--[if lt IE 7]>

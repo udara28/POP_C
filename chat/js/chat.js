@@ -89,6 +89,15 @@ var ajaxChat = {
 	DOMbuffering: null,
 	DOMbuffer: null,
 	DOMbufferRowClass: 'rowOdd',
+	dictionaryId: null,
+	communityId: null,
+	
+	switchDicttionary: function(val){
+			this.dictionaryId=val;
+	}
+	switchCommunity: function(val){
+			this.communityId=val;
+	}
 	
 	init: function(config, lang, initSettings, initStyle, initialize, initializeFunction, finalizeFunction) {	
 		this.httpRequest		= {};
@@ -151,6 +160,8 @@ var ajaxChat = {
 		this.retryTimerDelay 		= (this.inactiveTimeout*6000 - this.timerRate)/4 + this.timerRate;
 	},
 
+	
+	
 	initDirectories: function() {
 		this.dirs = {};
 		this.dirs['emoticons'] 	= this.baseURL+'img/emoticons/';
