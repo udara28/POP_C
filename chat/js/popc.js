@@ -1,18 +1,19 @@
 /**
- * This is send a translate request to Pop-c API
+ * This is to translate chat message
  * @param params
  * @param url
+ * @param chatImgId
  */
-function translate(params, url) {
+function translate(params, url, chatImgId) {
     $.ajax({
         type: "POST",
         url: "http://api.popc.org/pop_c/popc-api/index.php?do=" + url,
         dataType: "json",
         data: jQuery.parseJSON(params),
         success: function (data) {
-            img = "data:image/jpg;base64," + data['result'];
-            imgTag = "<img src=" + img + ">";
-            $("#imageDiv").html(imgTag);
+            var img = "data:image/jpg;base64," + data['result'];
+            var imgElTag = "#"+chatImgId;
+            $(imgElTag).attr("src", img)
         }
     });
 }

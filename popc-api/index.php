@@ -31,10 +31,10 @@ if ($action != null) {
         if ($action == 'chat') {
             $correlationId = $_POST['correlation_id'];
             $message = $_POST['message'];
-            $sender_communityId = $_POST['sender_communityId'];
-            $sender_dictionaryId = $_POST['sender_dictionaryId'];
-            $receiver_communityId = $_POST['receiver_communityId'];
-            $receiver_dictionaryId = $_POST['receiver_dictionaryId'];
+            $sender_communityId = $_POST['receiver_communityId'];
+            $sender_dictionaryId =  $_POST['receiver_dictionaryId'];
+            $receiver_communityId = $_POST['sender_communityId'] ;
+            $receiver_dictionaryId = $_POST['sender_dictionaryId'];
             $time = $_POST['time'];
             $logger->debug("Received chat request [".$correlationId."]");
 
