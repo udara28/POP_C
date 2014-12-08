@@ -4,4 +4,4 @@ community_community_homepage:
 
 community_community_index:
     pattern: /community
-    defaults: { _controller: CommunityCommunityBundle:Default:index }
+    defaults: { _controller: CommunityCommunityBundle:Default:communityManager }

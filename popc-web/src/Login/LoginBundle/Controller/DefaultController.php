@@ -77,4 +77,9 @@ class DefaultController extends Controller
         $sesstion->clear();
         return $this->render('LoginLoginBundle:Default:login.html.twig');
     }
+    
+    public function settingsAction(Request $request){
+        $sesstion = $this->getRequest()->getSession();
+        return $this->render('LoginLoginBundle:Default:settings.html.twig',array('name'=>$sesstion->get('login')->getUserName()));
+    }
 }

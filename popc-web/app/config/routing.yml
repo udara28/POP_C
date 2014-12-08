@@ -1,3 +1,7 @@
+file_file:
+    resource: "@FileFileBundle/Resources/config/routing.yml"
+    prefix:   /
+
 community_community:
     resource: "@CommunityCommunityBundle/Resources/config/routing.yml"
     prefix:   /

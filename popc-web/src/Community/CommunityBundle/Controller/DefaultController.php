@@ -11,7 +11,7 @@ class DefaultController extends Controller
         return $this->render('CommunityCommunityBundle:Default:index.html.twig', array('name' => $name));
     }
     
-    public function communityManager(){
+    public function communityManagerAction(){
         $session = $this->getRequest()->getSession();
         return $this->render('CommunityCommunityBundle:Default:index.html.twig',array('name' => $session->get('name')));
     }

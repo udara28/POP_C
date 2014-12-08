@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Login\LoginBundle\LoginLoginBundle(),
             new Dictionary\DictionaryBundle\DictionaryDictionaryBundle(),
             new Community\CommunityBundle\CommunityCommunityBundle(),
+            new File\FileBundle\FileFileBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
